@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { ThemeSwitcher } from '../theme/ThemeSwitcher';
 import { useWindowStore } from './windowStore';
+import { useSound } from '../sound/useSound';
 
 export function MenuBar() {
   const [time, setTime] = useState(new Date());
   const windows = useWindowStore((s) => s.windows);
+  const { volume, setVolume } = useSound();
   const topWindow = [...windows]
     .filter((w) => !w.minimized)
     .sort((a, b) => b.zIndex - a.zIndex)[0];
@@ -35,6 +37,25 @@ export function MenuBar() {
         {topWindow ? topWindow.title : 'Desktop'}
       </span>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: '10px', color: 'var(--color-text)' }}>
+            VOL
+          </span>
+          <input
+            aria-label="Volume"
+            type="range"
+            min={0}
+            max={1}
+            step={0.05}
+            value={volume}
+            onChange={(e) => setVolume(Number(e.target.value))}
+            style={{
+              width: 90,
+              accentColor: 'var(--color-primary)',
+              cursor: 'pointer',
+            }}
+          />
+        </div>
         <ThemeSwitcher />
         <span>{time.toLocaleTimeString()}</span>
       </div>
