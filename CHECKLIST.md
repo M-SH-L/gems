@@ -11,12 +11,12 @@
 - [x] Documentation files created (docs/*.md)
 
 ## Phase 2: Theme Engine
-- [ ] Theme definitions (themes.ts — 3 themes, all CSS vars)
-- [ ] CSS custom properties + Tailwind integration
-- [ ] ThemeContext provider
-- [ ] ThemeSwitcher component
-- [ ] Overlay effects (scanlines, hologram, grain)
-- [ ] Theme unit tests passing
+- [x] Theme definitions (themes.ts — 3 themes, all CSS vars)
+- [x] CSS custom properties + Tailwind integration
+- [x] ThemeContext provider
+- [x] ThemeSwitcher component
+- [x] Overlay effects (scanlines, hologram, grain)
+- [x] Theme unit tests passing
 
 ## Phase 3: Desktop Shell
 - [x] Desktop.tsx (full viewport, theme backgrounds)
