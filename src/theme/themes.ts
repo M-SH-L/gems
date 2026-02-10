@@ -11,6 +11,7 @@ export const themes: Theme[] = [
     vars: {
       '--color-bg': '#0a0a0a',
       '--color-primary': '#39ff14',
+      '--color-accent': '#39ff14',
       '--color-secondary': '#ff6600',
       '--color-text': '#39ff14',
       '--color-surface': '#1a1a1a',
@@ -27,6 +28,7 @@ export const themes: Theme[] = [
     vars: {
       '--color-bg': '#0b0e1a',
       '--color-primary': '#00e5ff',
+      '--color-accent': '#00e5ff',
       '--color-secondary': '#e040fb',
       '--color-text': '#e0e0e0',
       '--color-surface': '#131830',
@@ -43,6 +45,7 @@ export const themes: Theme[] = [
     vars: {
       '--color-bg': '#f5f0e8',
       '--color-primary': '#2d6a4f',
+      '--color-accent': '#2d6a4f',
       '--color-secondary': '#d4a373',
       '--color-text': '#2d2d2d',
       '--color-surface': '#ede4d4',

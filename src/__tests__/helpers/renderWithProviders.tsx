@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, type RenderOptions } from '@testing-library/react';
 import { ThemeProvider } from '@/theme/ThemeContext';
 import { SoundProvider } from '@/sound/SoundContext';

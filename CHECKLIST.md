@@ -11,30 +11,30 @@
 - [x] Documentation files created (docs/*.md)
 
 ## Phase 2: Theme Engine
-- [ ] Theme definitions (themes.ts — 3 themes, all CSS vars)
-- [ ] CSS custom properties + Tailwind integration
-- [ ] ThemeContext provider
-- [ ] ThemeSwitcher component
-- [ ] Overlay effects (scanlines, hologram, grain)
-- [ ] Theme unit tests passing
+- [x] Theme definitions (themes.ts — 3 themes, all CSS vars)
+- [x] CSS custom properties + Tailwind integration
+- [x] ThemeContext provider
+- [x] ThemeSwitcher component
+- [x] Overlay effects (scanlines, hologram, grain)
+- [x] Theme unit tests passing
 
 ## Phase 3: Desktop Shell
-- [ ] Desktop.tsx (full viewport, theme backgrounds)
-- [ ] MenuBar.tsx (clock, title, theme switcher, volume)
-- [ ] GameCard.tsx (themed cards with Play Now)
-- [ ] DesktopGrid.tsx (5-card layout)
-- [ ] Game registry (registry.ts)
-- [ ] Desktop component tests passing
+- [x] Desktop.tsx (full viewport, theme backgrounds)
+- [x] MenuBar.tsx (clock, title, theme switcher, volume)
+- [x] GameCard.tsx (themed cards with Play Now)
+- [x] DesktopGrid.tsx (5-card layout)
+- [x] Game registry (registry.ts)
+- [x] Desktop component tests passing
 
 ## Phase 4: Window Manager
-- [ ] windowStore.ts (Zustand — open/close/min/max/focus/drag/resize)
-- [ ] WindowFrame.tsx (draggable, resizable, title bar buttons)
-- [ ] WindowManager.tsx (renders open windows)
-- [ ] useDrag.ts hook
-- [ ] Bottom taskbar for minimized windows
-- [ ] Window store unit tests passing
-- [ ] Window component tests passing
-- [ ] Window integration tests passing
+- [x] windowStore.ts (Zustand — open/close/min/max/focus/drag/resize)
+- [x] WindowFrame.tsx (draggable, resizable, title bar buttons)
+- [x] WindowManager.tsx (renders open windows)
+- [x] useDrag.ts hook
+- [x] Bottom taskbar for minimized windows
+- [x] Window store unit tests passing
+- [x] Window component tests passing
+- [x] Window integration tests passing
 
 ## Phase 5: Sound System
 - [ ] Sound files created/sourced (3 themes × 9 actions)

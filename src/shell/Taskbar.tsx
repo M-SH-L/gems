@@ -3,6 +3,7 @@ import { useSound } from '../sound/useSound';
 
 export function Taskbar() {
   const windows = useWindowStore((s) => s.windows);
+  const restore = useWindowStore((s) => s.restore);
   const minimized = windows.filter((w) => w.minimized);
   const { play } = useSound();
 
@@ -30,14 +31,7 @@ export function Taskbar() {
           key={w.id}
           onClick={() => {
             play('open');
-            useWindowStore.setState((s) => ({
-              windows: s.windows.map((win) =>
-                win.id === w.id
-                  ? { ...win, minimized: false, zIndex: s.nextZ }
-                  : win
-              ),
-              nextZ: s.nextZ + 1,
-            }));
+            restore(w.id);
           }}
           style={{
             background: 'var(--color-bg)',

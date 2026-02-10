@@ -1,6 +1,6 @@
 import { ThemeProvider } from './theme/ThemeContext';
 import { SoundProvider } from './sound/SoundContext';
-import { Desktop } from './shell/Desktop';
+import { Desktop } from './desktop/Desktop';
 
 function App() {
   return (
