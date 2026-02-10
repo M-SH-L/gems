@@ -29,10 +29,7 @@ export function Taskbar() {
       {minimized.map((w) => (
         <button
           key={w.id}
-          onClick={() => {
-            play('open');
-            restore(w.id);
-          }}
+          onClick={() => restore(w.id)}
           style={{
             background: 'var(--color-bg)',
             border: 'var(--border-theme)',
