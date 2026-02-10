@@ -44,17 +44,17 @@
 - [ ] Sound wired to window events
 
 ## Phase 6: Game 1 — Interactive Fiction
-- [ ] Content types defined
-- [ ] Retro story content (15-20 scenes)
-- [ ] Futuristic story content (15-20 scenes)
-- [ ] Organic story content (15-20 scenes)
-- [ ] FictionEngine.ts (state machine)
-- [ ] FictionGame.tsx (renderer + choices)
-- [ ] Inventory.tsx component
-- [ ] Theme-switch reset behavior
-- [ ] Fiction engine unit tests passing
-- [ ] Fiction component tests passing
-- [ ] Fiction scenario tests passing (all 3 variants)
+- [x] Content types defined
+- [x] Retro story content (15-20 scenes)
+- [x] Futuristic story content (15-20 scenes)
+- [x] Organic story content (15-20 scenes)
+- [x] FictionEngine.ts (state machine)
+- [x] FictionGame.tsx (renderer + choices)
+- [x] Inventory.tsx component
+- [x] Theme-switch reset behavior
+- [x] Fiction engine unit tests passing
+- [x] Fiction component tests passing
+- [x] Fiction scenario tests passing (all 3 variants)
 
 ## Phase 7: Game 2 — Circuit Puzzle
 - [ ] Puzzle level format types
