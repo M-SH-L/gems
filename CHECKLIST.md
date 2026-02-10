@@ -70,17 +70,17 @@
 - [x] Circuit scenario tests passing (auto-solver)
 
 ## Phase 8: Game 3 — Building/Simulation
-- [ ] Item types + adjacency bonus format
-- [ ] Grid.tsx (12x12 CSS grid)
-- [ ] Palette.tsx (item selection sidebar)
-- [ ] ScorePanel.tsx (budget + score)
-- [ ] BuilderGame.tsx (state orchestration)
-- [ ] Retro content (10 items + rules)
-- [ ] Futuristic content (10 items + rules)
-- [ ] Organic content (10 items + rules)
-- [ ] Builder scoring unit tests passing
-- [ ] Builder component tests passing
-- [ ] Builder scenario tests passing
+- [x] Item types + adjacency bonus format
+- [x] Grid.tsx (12x12 CSS grid)
+- [x] Palette.tsx (item selection sidebar)
+- [x] ScorePanel.tsx (budget + score)
+- [x] BuilderGame.tsx (state orchestration)
+- [x] Retro content (10 items + rules)
+- [x] Futuristic content (10 items + rules)
+- [x] Organic content (10 items + rules)
+- [x] Builder scoring unit tests passing
+- [x] Builder component tests passing
+- [x] Builder scenario tests passing
 
 ## Phase 9: Game 4 — Geography
 - [x] SVG world map sourced/created
