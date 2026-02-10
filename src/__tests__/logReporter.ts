@@ -31,7 +31,9 @@ interface TestLog {
 }
 
 export default class LogReporter implements Reporter {
-  onTestRunEnd(testModules: Parameters<NonNullable<Reporter['onTestRunEnd']>>[0]) {
+  onTestRunEnd(
+    testModules: Parameters<NonNullable<Reporter['onTestRunEnd']>>[0]
+  ) {
     const startTime = Date.now();
     const log: TestLog = {
       timestamp: new Date().toISOString(),
