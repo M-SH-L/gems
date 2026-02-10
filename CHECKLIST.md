@@ -27,14 +27,14 @@
 - [ ] Desktop component tests passing
 
 ## Phase 4: Window Manager
-- [ ] windowStore.ts (Zustand — open/close/min/max/focus/drag/resize)
-- [ ] WindowFrame.tsx (draggable, resizable, title bar buttons)
-- [ ] WindowManager.tsx (renders open windows)
-- [ ] useDrag.ts hook
-- [ ] Bottom taskbar for minimized windows
-- [ ] Window store unit tests passing
-- [ ] Window component tests passing
-- [ ] Window integration tests passing
+- [x] windowStore.ts (Zustand — open/close/min/max/focus/drag/resize)
+- [x] WindowFrame.tsx (draggable, resizable, title bar buttons)
+- [x] WindowManager.tsx (renders open windows)
+- [x] useDrag.ts hook
+- [x] Bottom taskbar for minimized windows
+- [x] Window store unit tests passing
+- [x] Window component tests passing
+- [x] Window integration tests passing
 
 ## Phase 5: Sound System
 - [ ] Sound files created/sourced (3 themes × 9 actions)
