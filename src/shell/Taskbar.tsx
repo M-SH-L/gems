@@ -1,9 +1,11 @@
 import { useWindowStore } from './windowStore';
+import { useSound } from '../sound/useSound';
 
 export function Taskbar() {
   const windows = useWindowStore((s) => s.windows);
   const restore = useWindowStore((s) => s.restore);
   const minimized = windows.filter((w) => w.minimized);
+  const { play } = useSound();
 
   if (minimized.length === 0) return null;
 

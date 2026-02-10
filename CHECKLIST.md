@@ -44,17 +44,17 @@
 - [ ] Sound wired to window events
 
 ## Phase 6: Game 1 — Interactive Fiction
-- [ ] Content types defined
-- [ ] Retro story content (15-20 scenes)
-- [ ] Futuristic story content (15-20 scenes)
-- [ ] Organic story content (15-20 scenes)
-- [ ] FictionEngine.ts (state machine)
-- [ ] FictionGame.tsx (renderer + choices)
-- [ ] Inventory.tsx component
-- [ ] Theme-switch reset behavior
-- [ ] Fiction engine unit tests passing
-- [ ] Fiction component tests passing
-- [ ] Fiction scenario tests passing (all 3 variants)
+- [x] Content types defined
+- [x] Retro story content (15-20 scenes)
+- [x] Futuristic story content (15-20 scenes)
+- [x] Organic story content (15-20 scenes)
+- [x] FictionEngine.ts (state machine)
+- [x] FictionGame.tsx (renderer + choices)
+- [x] Inventory.tsx component
+- [x] Theme-switch reset behavior
+- [x] Fiction engine unit tests passing
+- [x] Fiction component tests passing
+- [x] Fiction scenario tests passing (all 3 variants)
 
 ## Phase 7: Game 2 — Circuit Puzzle
 - [x] Puzzle level format types
@@ -70,46 +70,46 @@
 - [x] Circuit scenario tests passing (auto-solver)
 
 ## Phase 8: Game 3 — Building/Simulation
-- [ ] Item types + adjacency bonus format
-- [ ] Grid.tsx (12x12 CSS grid)
-- [ ] Palette.tsx (item selection sidebar)
-- [ ] ScorePanel.tsx (budget + score)
-- [ ] BuilderGame.tsx (state orchestration)
-- [ ] Retro content (10 items + rules)
-- [ ] Futuristic content (10 items + rules)
-- [ ] Organic content (10 items + rules)
-- [ ] Builder scoring unit tests passing
-- [ ] Builder component tests passing
-- [ ] Builder scenario tests passing
+- [x] Item types + adjacency bonus format
+- [x] Grid.tsx (12x12 CSS grid)
+- [x] Palette.tsx (item selection sidebar)
+- [x] ScorePanel.tsx (budget + score)
+- [x] BuilderGame.tsx (state orchestration)
+- [x] Retro content (10 items + rules)
+- [x] Futuristic content (10 items + rules)
+- [x] Organic content (10 items + rules)
+- [x] Builder scoring unit tests passing
+- [x] Builder component tests passing
+- [x] Builder scenario tests passing
 
 ## Phase 9: Game 4 — Geography
-- [ ] SVG world map sourced/created
-- [ ] Custom star chart SVG created
-- [ ] MapCanvas.tsx (SVG + click handling)
-- [ ] LocationPin.tsx (themed markers)
-- [ ] InfoPopup.tsx (landmark info cards)
-- [ ] GeographyGame.tsx (rounds, scoring, reveal)
-- [ ] Retro locations (10-15)
-- [ ] Futuristic locations (10-15)
-- [ ] Organic locations (10-15)
-- [ ] Geo scoring unit tests passing
-- [ ] Geo component tests passing
-- [ ] Geo scenario tests passing
+- [x] SVG world map sourced/created
+- [x] Custom star chart SVG created
+- [x] MapCanvas.tsx (SVG + click handling)
+- [x] LocationPin.tsx (themed markers)
+- [x] InfoPopup.tsx (landmark info cards)
+- [x] GeographyGame.tsx (rounds, scoring, reveal)
+- [x] Retro locations (10-15)
+- [x] Futuristic locations (10-15)
+- [x] Organic locations (10-15)
+- [x] Geo scoring unit tests passing
+- [x] Geo component tests passing
+- [x] Geo scenario tests passing
 
 ## Phase 10: Game 5 — Platformer
-- [ ] useGameLoop.ts hook
-- [ ] engine.ts (physics, collision, input)
-- [ ] entities.ts (Player, Collectible, Hazard)
-- [ ] renderer.ts (canvas draw)
-- [ ] levels.ts (level parser)
-- [ ] Retro levels (3 levels)
-- [ ] Futuristic levels (3 levels)
-- [ ] Organic levels (3 levels)
-- [ ] PlatformerGame.tsx (canvas + HUD)
-- [ ] Tuned jump feel
-- [ ] Platformer engine unit tests passing
-- [ ] Platformer component tests passing
-- [ ] Platformer scenario tests passing
+- [x] useGameLoop.ts hook
+- [x] engine.ts (physics, collision, input)
+- [x] entities.ts (Player, Collectible, Hazard)
+- [x] renderer.ts (canvas draw)
+- [x] levels.ts (level parser)
+- [x] Retro levels (3 levels)
+- [x] Futuristic levels (3 levels)
+- [x] Organic levels (3 levels)
+- [x] PlatformerGame.tsx (canvas + HUD)
+- [x] Tuned jump feel
+- [x] Platformer engine unit tests passing
+- [x] Platformer component tests passing
+- [x] Platformer scenario tests passing
 
 ## Phase 11: Polish
 - [ ] Window open/close animations
