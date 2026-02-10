@@ -83,18 +83,18 @@
 - [ ] Builder scenario tests passing
 
 ## Phase 9: Game 4 — Geography
-- [ ] SVG world map sourced/created
-- [ ] Custom star chart SVG created
-- [ ] MapCanvas.tsx (SVG + click handling)
-- [ ] LocationPin.tsx (themed markers)
-- [ ] InfoPopup.tsx (landmark info cards)
-- [ ] GeographyGame.tsx (rounds, scoring, reveal)
-- [ ] Retro locations (10-15)
-- [ ] Futuristic locations (10-15)
-- [ ] Organic locations (10-15)
-- [ ] Geo scoring unit tests passing
-- [ ] Geo component tests passing
-- [ ] Geo scenario tests passing
+- [x] SVG world map sourced/created
+- [x] Custom star chart SVG created
+- [x] MapCanvas.tsx (SVG + click handling)
+- [x] LocationPin.tsx (themed markers)
+- [x] InfoPopup.tsx (landmark info cards)
+- [x] GeographyGame.tsx (rounds, scoring, reveal)
+- [x] Retro locations (10-15)
+- [x] Futuristic locations (10-15)
+- [x] Organic locations (10-15)
+- [x] Geo scoring unit tests passing
+- [x] Geo component tests passing
+- [x] Geo scenario tests passing
 
 ## Phase 10: Game 5 — Platformer
 - [ ] useGameLoop.ts hook
