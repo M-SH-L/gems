@@ -21,6 +21,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const root = document.documentElement;
+    root.setAttribute('data-theme', theme.id);
     for (const [key, value] of Object.entries(theme.vars)) {
       root.style.setProperty(key, value);
     }

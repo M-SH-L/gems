@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg: #0a0a0a;
+  --color-primary: #39ff14;
+  --color-accent: #39ff14;
+  --color-secondary: #ff6600;
+  --color-text: #39ff14;
+  --color-surface: #1a1a1a;
+  --font-theme: "Press Start 2P", monospace;
+  --radius-theme: 0px;
+  --shadow-theme: 0 0 10px #39ff14;
+}
+
 @font-face {
   font-family: "Press Start 2P";
   src: url("https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2") format("woff2");
@@ -18,12 +30,96 @@
   font-display: swap;
 }
 
+:root {
+  --color-bg: #0a0a0a;
+  --color-primary: #39ff14;
+  --color-accent: #39ff14;
+  --color-secondary: #ff6600;
+  --color-text: #39ff14;
+  --color-surface: #1a1a1a;
+  --font-theme: "Press Start 2P", monospace;
+  --radius-theme: 0px;
+  --border-theme: 2px solid #39ff14;
+  --shadow-theme: 0 0 10px #39ff14;
+  --transition-speed: 0.3s;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-theme);
+}
+
+#root {
+  position: relative;
+  isolation: isolate;
+}
+
+#root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+}
+
+:root[data-theme="retro"] #root::after {
+  opacity: 0.18;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.35) 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="futuristic"] #root::after {
+  opacity: 0.25;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(0, 229, 255, 0.15) 45%,
+    rgba(224, 64, 251, 0.25) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: holo-shimmer 6s linear infinite;
+  mix-blend-mode: screen;
+}
+
+:root[data-theme="organic"] #root::after {
+  opacity: 0.18;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 3px 3px, 4px 4px;
+  background-position: 0 0, 1px 1px;
+  mix-blend-mode: multiply;
+}
+
+@keyframes holo-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="futuristic"] #root::after {
+    animation: none;
+  }
 }
 
 * {
