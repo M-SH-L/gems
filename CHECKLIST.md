@@ -19,12 +19,12 @@
 - [ ] Theme unit tests passing
 
 ## Phase 3: Desktop Shell
-- [ ] Desktop.tsx (full viewport, theme backgrounds)
-- [ ] MenuBar.tsx (clock, title, theme switcher, volume)
-- [ ] GameCard.tsx (themed cards with Play Now)
-- [ ] DesktopGrid.tsx (5-card layout)
-- [ ] Game registry (registry.ts)
-- [ ] Desktop component tests passing
+- [x] Desktop.tsx (full viewport, theme backgrounds)
+- [x] MenuBar.tsx (clock, title, theme switcher, volume)
+- [x] GameCard.tsx (themed cards with Play Now)
+- [x] DesktopGrid.tsx (5-card layout)
+- [x] Game registry (registry.ts)
+- [x] Desktop component tests passing
 
 ## Phase 4: Window Manager
 - [ ] windowStore.ts (Zustand — open/close/min/max/focus/drag/resize)

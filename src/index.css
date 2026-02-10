@@ -32,3 +32,15 @@ html, body, #root {
               border-color var(--transition-speed, 0.3s),
               box-shadow var(--transition-speed, 0.3s);
 }
+
+@keyframes holoShift {
+  0% {
+    background-position: 0% 0%, 0 0;
+  }
+  50% {
+    background-position: 100% 50%, 40px 0;
+  }
+  100% {
+    background-position: 0% 0%, 0 0;
+  }
+}
