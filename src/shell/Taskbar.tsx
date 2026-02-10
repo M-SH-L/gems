@@ -1,9 +1,11 @@
 import { useWindowStore } from './windowStore';
+import { useSound } from '../sound/useSound';
 
 export function Taskbar() {
   const windows = useWindowStore((s) => s.windows);
   const restore = useWindowStore((s) => s.restore);
   const minimized = windows.filter((w) => w.minimized);
+  const { play } = useSound();
 
   if (minimized.length === 0) return null;
 
@@ -27,7 +29,10 @@ export function Taskbar() {
       {minimized.map((w) => (
         <button
           key={w.id}
-          onClick={() => restore(w.id)}
+          onClick={() => {
+            play('open');
+            restore(w.id);
+          }}
           style={{
             background: 'var(--color-bg)',
             border: 'var(--border-theme)',

@@ -1,10 +1,13 @@
 import { ThemeProvider } from './theme/ThemeContext';
+import { SoundProvider } from './sound/SoundContext';
 import { Desktop } from './desktop/Desktop';
 
 function App() {
   return (
     <ThemeProvider>
-      <Desktop />
+      <SoundProvider>
+        <Desktop />
+      </SoundProvider>
     </ThemeProvider>
   );
 }

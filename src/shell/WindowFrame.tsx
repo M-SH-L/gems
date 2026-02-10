@@ -2,10 +2,12 @@ import { Suspense, useRef } from 'react';
 import { useWindowStore, type WindowState } from './windowStore';
 import { useDrag } from './useDrag';
 import { games } from './registry';
+import { useSound } from '../sound/useSound';
 
 export function WindowFrame({ win }: { win: WindowState }) {
   const { close, minimize, maximize, focus, updatePosition, updateSize } =
     useWindowStore();
+  const { play } = useSound();
   const posRef = useRef({ x: win.x, y: win.y });
   const sizeRef = useRef({ w: win.width, h: win.height });
 
@@ -101,21 +103,32 @@ export function WindowFrame({ win }: { win: WindowState }) {
         </span>
         <div style={{ display: 'flex', gap: 6 }}>
           <button
-            onClick={(e) => { e.stopPropagation(); minimize(win.id); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              play('click');
+              minimize(win.id);
+            }}
             style={btnStyle}
             title="Minimize"
           >
             _
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); maximize(win.id); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              maximize(win.id);
+            }}
             style={btnStyle}
             title="Maximize"
           >
             □
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); close(win.id); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              play('close');
+              close(win.id);
+            }}
             style={{ ...btnStyle, color: '#ff4444' }}
             title="Close"
           >

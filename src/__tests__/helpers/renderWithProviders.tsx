@@ -1,12 +1,13 @@
 import React from 'react';
 import { render, type RenderOptions } from '@testing-library/react';
 import { ThemeProvider } from '@/theme/ThemeContext';
+import { SoundProvider } from '@/sound/SoundContext';
 import type { ReactElement, ReactNode } from 'react';
 
 function AllProviders({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider>
-      {children}
+      <SoundProvider>{children}</SoundProvider>
     </ThemeProvider>
   );
 }
