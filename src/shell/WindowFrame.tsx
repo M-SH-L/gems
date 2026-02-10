@@ -10,6 +10,7 @@ export function WindowFrame({ win }: { win: WindowState }) {
   const sizeRef = useRef({ w: win.width, h: win.height });
 
   const dragHandlers = useDrag({
+    enabled: !win.maximized,
     onDragStart: () => {
       posRef.current = { x: win.x, y: win.y };
       focus(win.id);
@@ -20,6 +21,7 @@ export function WindowFrame({ win }: { win: WindowState }) {
   });
 
   const resizeHandlers = useDrag({
+    enabled: !win.maximized,
     onDragStart: () => {
       sizeRef.current = { w: win.width, h: win.height };
       focus(win.id);
