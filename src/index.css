@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Orbitron";
+  src: url("https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6BoWg1fDAlp7lk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Caveat";
+  src: url("https://fonts.gstatic.com/s/caveat/v18/WnznHAc5bAfYB2QRah7pcpNvOx-pjfJ9SIKjYBxPigs.woff2") format("woff2");
+  font-display: swap;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  transition: background-color var(--transition-speed, 0.3s),
+              color var(--transition-speed, 0.3s),
+              border-color var(--transition-speed, 0.3s),
+              box-shadow var(--transition-speed, 0.3s);
+}
