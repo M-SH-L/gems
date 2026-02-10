@@ -2,6 +2,7 @@ import { useWindowStore } from './windowStore';
 
 export function Taskbar() {
   const windows = useWindowStore((s) => s.windows);
+  const restore = useWindowStore((s) => s.restore);
   const minimized = windows.filter((w) => w.minimized);
 
   if (minimized.length === 0) return null;
@@ -26,16 +27,7 @@ export function Taskbar() {
       {minimized.map((w) => (
         <button
           key={w.id}
-          onClick={() => {
-            useWindowStore.setState((s) => ({
-              windows: s.windows.map((win) =>
-                win.id === w.id
-                  ? { ...win, minimized: false, zIndex: s.nextZ }
-                  : win
-              ),
-              nextZ: s.nextZ + 1,
-            }));
-          }}
+          onClick={() => restore(w.id)}
           style={{
             background: 'var(--color-bg)',
             border: 'var(--border-theme)',
