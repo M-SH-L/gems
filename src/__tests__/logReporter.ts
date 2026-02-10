@@ -30,8 +30,8 @@ interface TestLog {
   games: Record<string, GameTestResult>;
 }
 
-const LogReporter: Reporter = {
-  onFinished(files) {
+export default class LogReporter implements Reporter {
+  private writeLog(files: any[]) {
     const startTime = Date.now();
     const log: TestLog = {
       timestamp: new Date().toISOString(),
@@ -57,7 +57,13 @@ const LogReporter: Reporter = {
       resolve(outDir, 'scenarios.log.json'),
       JSON.stringify(log, null, 2)
     );
-  },
-};
+  }
 
-export default LogReporter;
+  onTestRunEnd(testModules) {
+    this.writeLog(testModules?.map((m: any) => m.task) ?? []);
+  }
+
+  onFinished(files) {
+    this.writeLog(files ?? []);
+  }
+}

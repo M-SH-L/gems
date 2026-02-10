@@ -97,19 +97,19 @@
 - [ ] Geo scenario tests passing
 
 ## Phase 10: Game 5 — Platformer
-- [ ] useGameLoop.ts hook
-- [ ] engine.ts (physics, collision, input)
-- [ ] entities.ts (Player, Collectible, Hazard)
-- [ ] renderer.ts (canvas draw)
-- [ ] levels.ts (level parser)
-- [ ] Retro levels (3 levels)
-- [ ] Futuristic levels (3 levels)
-- [ ] Organic levels (3 levels)
-- [ ] PlatformerGame.tsx (canvas + HUD)
-- [ ] Tuned jump feel
-- [ ] Platformer engine unit tests passing
-- [ ] Platformer component tests passing
-- [ ] Platformer scenario tests passing
+- [x] useGameLoop.ts hook
+- [x] engine.ts (physics, collision, input)
+- [x] entities.ts (Player, Collectible, Hazard)
+- [x] renderer.ts (canvas draw)
+- [x] levels.ts (level parser)
+- [x] Retro levels (3 levels)
+- [x] Futuristic levels (3 levels)
+- [x] Organic levels (3 levels)
+- [x] PlatformerGame.tsx (canvas + HUD)
+- [x] Tuned jump feel
+- [x] Platformer engine unit tests passing
+- [x] Platformer component tests passing
+- [x] Platformer scenario tests passing
 
 ## Phase 11: Polish
 - [ ] Window open/close animations
