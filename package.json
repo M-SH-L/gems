@@ -11,7 +11,7 @@
     "test": "NODE_OPTIONS=--experimental-require-module vitest run",
     "test:watch": "NODE_OPTIONS=--experimental-require-module vitest",
     "test:coverage": "NODE_OPTIONS=--experimental-require-module vitest run --coverage",
-    "test:scenarios": "NODE_OPTIONS=--experimental-require-module vitest run --reporter=default --reporter=./src/__tests__/logReporter.ts scenarios",
+    "test:scenarios": "NODE_OPTIONS=--experimental-require-module vitest run --reporter=default --reporter=./src/__tests__/logReporter.js scenarios",
     "test:e2e": "playwright test"
   },
   "dependencies": {
