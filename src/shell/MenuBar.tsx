@@ -35,6 +35,23 @@ export function MenuBar() {
         {topWindow ? topWindow.title : 'Desktop'}
       </span>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <button
+          type="button"
+          aria-label="Volume"
+          title="Volume"
+          style={{
+            background: 'var(--color-bg)',
+            border: 'var(--border-theme)',
+            borderRadius: 'var(--radius-theme)',
+            fontFamily: 'var(--font-theme)',
+            fontSize: '10px',
+            color: 'var(--color-text)',
+            padding: '2px 8px',
+            cursor: 'pointer',
+          }}
+        >
+          VOL
+        </button>
         <ThemeSwitcher />
         <span>{time.toLocaleTimeString()}</span>
       </div>

@@ -1,5 +1,5 @@
 import { ThemeProvider } from './theme/ThemeContext';
-import { Desktop } from './shell/Desktop';
+import { Desktop } from './desktop/Desktop';
 
 function App() {
   return (
