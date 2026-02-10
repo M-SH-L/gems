@@ -57,44 +57,44 @@
 - [x] Fiction scenario tests passing (all 3 variants)
 
 ## Phase 7: Game 2 — Circuit Puzzle
-- [ ] Puzzle level format types
-- [ ] PuzzleGrid.tsx (SVG renderer)
-- [ ] PathDrawer.tsx (drag-to-draw + crossing validation)
-- [ ] Retro puzzle content (5 levels)
-- [ ] Futuristic puzzle content (5 levels)
-- [ ] Organic puzzle content (5 levels)
-- [ ] CircuitGame.tsx (level management, timer)
-- [ ] Themed styling (PCB / conduits / roots)
-- [ ] Circuit validation unit tests passing
-- [ ] Circuit component tests passing
-- [ ] Circuit scenario tests passing (auto-solver)
+- [x] Puzzle level format types
+- [x] PuzzleGrid.tsx (SVG renderer)
+- [x] PathDrawer.tsx (drag-to-draw + crossing validation)
+- [x] Retro puzzle content (5 levels)
+- [x] Futuristic puzzle content (5 levels)
+- [x] Organic puzzle content (5 levels)
+- [x] CircuitGame.tsx (level management, timer)
+- [x] Themed styling (PCB / conduits / roots)
+- [x] Circuit validation unit tests passing
+- [x] Circuit component tests passing
+- [x] Circuit scenario tests passing (auto-solver)
 
 ## Phase 8: Game 3 — Building/Simulation
-- [ ] Item types + adjacency bonus format
-- [ ] Grid.tsx (12x12 CSS grid)
-- [ ] Palette.tsx (item selection sidebar)
-- [ ] ScorePanel.tsx (budget + score)
-- [ ] BuilderGame.tsx (state orchestration)
-- [ ] Retro content (10 items + rules)
-- [ ] Futuristic content (10 items + rules)
-- [ ] Organic content (10 items + rules)
-- [ ] Builder scoring unit tests passing
-- [ ] Builder component tests passing
-- [ ] Builder scenario tests passing
+- [x] Item types + adjacency bonus format
+- [x] Grid.tsx (12x12 CSS grid)
+- [x] Palette.tsx (item selection sidebar)
+- [x] ScorePanel.tsx (budget + score)
+- [x] BuilderGame.tsx (state orchestration)
+- [x] Retro content (10 items + rules)
+- [x] Futuristic content (10 items + rules)
+- [x] Organic content (10 items + rules)
+- [x] Builder scoring unit tests passing
+- [x] Builder component tests passing
+- [x] Builder scenario tests passing
 
 ## Phase 9: Game 4 — Geography
-- [ ] SVG world map sourced/created
-- [ ] Custom star chart SVG created
-- [ ] MapCanvas.tsx (SVG + click handling)
-- [ ] LocationPin.tsx (themed markers)
-- [ ] InfoPopup.tsx (landmark info cards)
-- [ ] GeographyGame.tsx (rounds, scoring, reveal)
-- [ ] Retro locations (10-15)
-- [ ] Futuristic locations (10-15)
-- [ ] Organic locations (10-15)
-- [ ] Geo scoring unit tests passing
-- [ ] Geo component tests passing
-- [ ] Geo scenario tests passing
+- [x] SVG world map sourced/created
+- [x] Custom star chart SVG created
+- [x] MapCanvas.tsx (SVG + click handling)
+- [x] LocationPin.tsx (themed markers)
+- [x] InfoPopup.tsx (landmark info cards)
+- [x] GeographyGame.tsx (rounds, scoring, reveal)
+- [x] Retro locations (10-15)
+- [x] Futuristic locations (10-15)
+- [x] Organic locations (10-15)
+- [x] Geo scoring unit tests passing
+- [x] Geo component tests passing
+- [x] Geo scenario tests passing
 
 ## Phase 10: Game 5 — Platformer
 - [x] useGameLoop.ts hook

@@ -1,8 +1,10 @@
 import type { GameEntry } from './registry';
 import { useWindowStore } from './windowStore';
+import { useSound } from '../sound/useSound';
 
 export function GameCard({ game }: { game: GameEntry }) {
   const open = useWindowStore((s) => s.open);
+  const { play } = useSound();
 
   return (
     <div
@@ -28,7 +30,10 @@ export function GameCard({ game }: { game: GameEntry }) {
         {game.description}
       </span>
       <button
-        onClick={() => open(game.id, game.title)}
+        onClick={() => {
+          play('open');
+          open(game.id, game.title);
+        }}
         style={{
           background: 'var(--color-primary)',
           color: 'var(--color-bg)',

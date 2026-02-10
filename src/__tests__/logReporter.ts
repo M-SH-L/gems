@@ -1,4 +1,4 @@
-import type { Reporter } from 'vitest/reporters';
+import { experimental_getRunnerTask, type Reporter } from 'vitest/node';
 import { writeFileSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 
@@ -40,12 +40,22 @@ export default class LogReporter implements Reporter {
       games: {},
     };
 
-    for (const file of files ?? []) {
-      for (const task of file.tasks ?? []) {
+    const walkTasks = (task: any) => {
+      if (task?.type === 'test') {
         log.summary.total++;
         if (task.result?.state === 'pass') log.summary.passed++;
         else if (task.result?.state === 'fail') log.summary.failed++;
         else log.summary.skipped++;
+      }
+      if (task?.tasks?.length) {
+        for (const child of task.tasks) walkTasks(child);
+      }
+    };
+
+    for (const module of testModules ?? []) {
+      const fileTask = experimental_getRunnerTask(module as any) as any;
+      if (fileTask?.tasks?.length) {
+        for (const task of fileTask.tasks) walkTasks(task);
       }
     }
 
