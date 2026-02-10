@@ -57,17 +57,17 @@
 - [x] Fiction scenario tests passing (all 3 variants)
 
 ## Phase 7: Game 2 — Circuit Puzzle
-- [ ] Puzzle level format types
-- [ ] PuzzleGrid.tsx (SVG renderer)
-- [ ] PathDrawer.tsx (drag-to-draw + crossing validation)
-- [ ] Retro puzzle content (5 levels)
-- [ ] Futuristic puzzle content (5 levels)
-- [ ] Organic puzzle content (5 levels)
-- [ ] CircuitGame.tsx (level management, timer)
-- [ ] Themed styling (PCB / conduits / roots)
-- [ ] Circuit validation unit tests passing
-- [ ] Circuit component tests passing
-- [ ] Circuit scenario tests passing (auto-solver)
+- [x] Puzzle level format types
+- [x] PuzzleGrid.tsx (SVG renderer)
+- [x] PathDrawer.tsx (drag-to-draw + crossing validation)
+- [x] Retro puzzle content (5 levels)
+- [x] Futuristic puzzle content (5 levels)
+- [x] Organic puzzle content (5 levels)
+- [x] CircuitGame.tsx (level management, timer)
+- [x] Themed styling (PCB / conduits / roots)
+- [x] Circuit validation unit tests passing
+- [x] Circuit component tests passing
+- [x] Circuit scenario tests passing (auto-solver)
 
 ## Phase 8: Game 3 — Building/Simulation
 - [ ] Item types + adjacency bonus format
