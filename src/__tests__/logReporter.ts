@@ -31,7 +31,9 @@ interface TestLog {
 }
 
 export default class LogReporter implements Reporter {
-  private writeLog(files: any[]) {
+  onTestRunEnd(
+    testModules: Parameters<NonNullable<Reporter['onTestRunEnd']>>[0]
+  ) {
     const startTime = Date.now();
     const log: TestLog = {
       timestamp: new Date().toISOString(),
@@ -67,13 +69,5 @@ export default class LogReporter implements Reporter {
       resolve(outDir, 'scenarios.log.json'),
       JSON.stringify(log, null, 2)
     );
-  }
-
-  onTestRunEnd(testModules) {
-    this.writeLog(testModules?.map((m: any) => m.task) ?? []);
-  }
-
-  onFinished(files) {
-    this.writeLog(files ?? []);
   }
 }
