@@ -158,7 +158,7 @@ Comprehensive test coverage across multiple layers:
 - **Component Tests** – DOM rendering and user interactions
 - **Integration Tests** – Theme switching mid-game, window lifecycles, full game flows
 - **Scenario Tests** – Automated game playthroughs (optimal paths, edge cases, auto-solvers)
-- **E2E Tests** – Visual regression, drag/resize/stack behaviors, actual gameplay in browser
+- **E2E Tests** – Playwright (Chromium) against a production build: window drag/resize/minimize/restore with game progress kept, theme switching mid-game, volume toggle, and the V1 ⇄ V2 portal. Any unexpected console or page error fails the run. No visual regression yet.
 
 Test results logged to `test-results/scenarios.log.json` for review.
 
@@ -182,7 +182,8 @@ src/
 ├── v2/             # Gems V2: three.js stage, 3D hub, runner / stacker / maze
 ├── hooks/          # Custom hooks (useGameLoop, useThemeReset)
 ├── utils/          # Utilities (cn, clamp)
-└── __tests__/      # Full test suite (unit, component, integration, scenarios, e2e)
+└── __tests__/      # Vitest suites (unit, component, integration, scenarios)
+e2e/                # Playwright browser specs (npm run test:e2e)
 ```
 
 ---
@@ -205,7 +206,8 @@ npm run test:coverage
 # Run scenario tests (logs to test-results/)
 npm run test:scenarios
 
-# Run E2E tests
+# Run E2E tests (builds, serves on :4173, drives Chromium)
+# First time outside an environment with Chromium preinstalled: npx playwright install chromium
 npm run test:e2e
 ```
 
