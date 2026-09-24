@@ -170,7 +170,7 @@ Test results logged to `test-results/scenarios.log.json` for review.
 src/
 ├── theme/          # Theme engine (CSS vars, context, switcher)
 ├── desktop/        # Desktop shell (menu bar, game cards, grid)
-├── shell/          # Window manager (frames, store, drag logic)
+├── shell/          # Window manager (frames, store, useDrag)
 ├── sound/          # Sound system (context, map, hook)
 ├── games/
 │   ├── fiction/    # Interactive fiction engine + 3 story variants
@@ -180,7 +180,7 @@ src/
 │   └── platformer/ # Canvas platformer + 9 levels (3 per theme)
 ├── portal/         # V1 ↔ V2 portal orb + vortex transition
 ├── v2/             # Gems V2: three.js stage, 3D hub, runner / stacker / maze
-├── hooks/          # Custom hooks (useDrag, useGameLoop)
+├── hooks/          # Custom hooks (useGameLoop, useThemeReset)
 ├── utils/          # Utilities (cn, clamp)
 └── __tests__/      # Full test suite (unit, component, integration, scenarios, e2e)
 ```

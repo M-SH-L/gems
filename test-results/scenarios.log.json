@@ -1,11 +1,235 @@
 {
-  "timestamp": "2026-02-10T13:50:47.842Z",
-  "duration_ms": 0,
+  "timestamp": "2026-09-24T14:38:43.600Z",
+  "duration_ms": 1,
   "summary": {
-    "total": 11,
-    "passed": 11,
+    "total": 29,
+    "passed": 29,
     "failed": 0,
     "skipped": 0
   },
-  "games": {}
+  "games": {
+    "builder": {
+      "scenarios_run": 4,
+      "scenarios_passed": 4,
+      "themes_tested": [
+        "all"
+      ],
+      "details": [
+        {
+          "name": "builder scenarios > max score layouts produce expected bonuses",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 2
+        },
+        {
+          "name": "builder scenarios > budget exhaustion prevents further placement",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "builder scenarios > remove and replace restores budget and score",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 0
+        },
+        {
+          "name": "builder scenarios > random placement does not crash and yields non-negative score",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 1
+        }
+      ]
+    },
+    "circuit": {
+      "scenarios_run": 3,
+      "scenarios_passed": 3,
+      "themes_tested": [
+        "all"
+      ],
+      "details": [
+        {
+          "name": "circuit scenarios > auto-solves every circuit level for each theme",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 8
+        },
+        {
+          "name": "circuit scenarios > rejects crossing paths scenario",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 0
+        },
+        {
+          "name": "circuit scenarios > clears and retries a path cleanly",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 1
+        }
+      ]
+    },
+    "fiction": {
+      "scenarios_run": 9,
+      "scenarios_passed": 9,
+      "themes_tested": [
+        "retro",
+        "futuristic",
+        "organic"
+      ],
+      "details": [
+        {
+          "name": "fiction scenarios > finds a win path for retro",
+          "theme": "retro",
+          "status": "pass",
+          "duration_ms": 2
+        },
+        {
+          "name": "fiction scenarios > can reach every scene for retro",
+          "theme": "retro",
+          "status": "pass",
+          "duration_ms": 2
+        },
+        {
+          "name": "fiction scenarios > validates gated choices for retro",
+          "theme": "retro",
+          "status": "pass",
+          "duration_ms": 0
+        },
+        {
+          "name": "fiction scenarios > finds a win path for futuristic",
+          "theme": "futuristic",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "fiction scenarios > can reach every scene for futuristic",
+          "theme": "futuristic",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "fiction scenarios > validates gated choices for futuristic",
+          "theme": "futuristic",
+          "status": "pass",
+          "duration_ms": 0
+        },
+        {
+          "name": "fiction scenarios > finds a win path for organic",
+          "theme": "organic",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "fiction scenarios > can reach every scene for organic",
+          "theme": "organic",
+          "status": "pass",
+          "duration_ms": 0
+        },
+        {
+          "name": "fiction scenarios > validates gated choices for organic",
+          "theme": "organic",
+          "status": "pass",
+          "duration_ms": 0
+        }
+      ]
+    },
+    "geo": {
+      "scenarios_run": 4,
+      "scenarios_passed": 4,
+      "themes_tested": [
+        "all"
+      ],
+      "details": [
+        {
+          "name": "Geography scenarios > perfect game scores 100 points per location",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 2
+        },
+        {
+          "name": "Geography scenarios > worst game scores 0 points for distant guesses",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "Geography scenarios > mixed accuracy alternates between perfect and far guesses",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "Geography scenarios > all locations have valid coordinates and descriptions",
+          "theme": "all",
+          "status": "pass",
+          "duration_ms": 4
+        }
+      ]
+    },
+    "platformer": {
+      "scenarios_run": 9,
+      "scenarios_passed": 9,
+      "themes_tested": [
+        "retro",
+        "futuristic",
+        "organic"
+      ],
+      "details": [
+        {
+          "name": "platformer scenarios > retro > level 1 hazards, collectibles, goal, gravity",
+          "theme": "retro",
+          "status": "pass",
+          "duration_ms": 3
+        },
+        {
+          "name": "platformer scenarios > retro > level 2 hazards, collectibles, goal, gravity",
+          "theme": "retro",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "platformer scenarios > retro > level 3 hazards, collectibles, goal, gravity",
+          "theme": "retro",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "platformer scenarios > futuristic > level 1 hazards, collectibles, goal, gravity",
+          "theme": "futuristic",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "platformer scenarios > futuristic > level 2 hazards, collectibles, goal, gravity",
+          "theme": "futuristic",
+          "status": "pass",
+          "duration_ms": 0
+        },
+        {
+          "name": "platformer scenarios > futuristic > level 3 hazards, collectibles, goal, gravity",
+          "theme": "futuristic",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "platformer scenarios > organic > level 1 hazards, collectibles, goal, gravity",
+          "theme": "organic",
+          "status": "pass",
+          "duration_ms": 1
+        },
+        {
+          "name": "platformer scenarios > organic > level 2 hazards, collectibles, goal, gravity",
+          "theme": "organic",
+          "status": "pass",
+          "duration_ms": 0
+        },
+        {
+          "name": "platformer scenarios > organic > level 3 hazards, collectibles, goal, gravity",
+          "theme": "organic",
+          "status": "pass",
+          "duration_ms": 1
+        }
+      ]
+    }
+  }
 }

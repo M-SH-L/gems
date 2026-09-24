@@ -1,5 +1,6 @@
 import { Component, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { ThemeProvider } from './theme/ThemeContext';
+import { SoundProvider } from './sound/SoundContext';
 import { Desktop } from './desktop/Desktop';
 import { PortalContext, type PortalControls } from './portal/PortalContext';
 import { PortalTransition, type PortalRequest } from './portal/PortalTransition';
@@ -70,29 +71,31 @@ function App() {
 
   return (
     <ThemeProvider>
-      <PortalContext.Provider value={controls}>
-        <div ref={worldRef} style={{ width: '100%', height: '100%' }}>
-          {world === 'v1' ? (
-            <Desktop />
-          ) : (
-            <V2Boundary onFail={() => setWorld('v1')}>
-              <Suspense fallback={<div className="v2-loading" />}>
-                <V2App onExit={exitV2} />
-              </Suspense>
-            </V2Boundary>
+      <SoundProvider>
+        <PortalContext.Provider value={controls}>
+          <div ref={worldRef} style={{ width: '100%', height: '100%' }}>
+            {world === 'v1' ? (
+              <Desktop />
+            ) : (
+              <V2Boundary onFail={() => setWorld('v1')}>
+                <Suspense fallback={<div className="v2-loading" />}>
+                  <V2App onExit={exitV2} />
+                </Suspense>
+              </V2Boundary>
+            )}
+          </div>
+          {portal && (
+            <PortalTransition
+              direction={portal.direction}
+              origin={portal.origin}
+              ready={portal.ready}
+              worldRef={worldRef}
+              onSwap={swap}
+              onDone={done}
+            />
           )}
-        </div>
-        {portal && (
-          <PortalTransition
-            direction={portal.direction}
-            origin={portal.origin}
-            ready={portal.ready}
-            worldRef={worldRef}
-            onSwap={swap}
-            onDone={done}
-          />
-        )}
-      </PortalContext.Provider>
+        </PortalContext.Provider>
+      </SoundProvider>
     </ThemeProvider>
   );
 }

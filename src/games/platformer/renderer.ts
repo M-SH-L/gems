@@ -1,10 +1,6 @@
 import { clamp } from '@/utils/clamp';
-import {
-  TILE_SIZE,
-  TileCode,
-  type PlatformerPalette,
-  type PlatformerState,
-} from './entities';
+import { TILE_SIZE, TileCode, type PlatformerPalette } from './entities';
+import type { PlatformerState } from './engine';
 
 interface Viewport {
   width: number;
@@ -242,15 +238,10 @@ function drawRoundedRect(
   height: number,
   radius: number
 ) {
-  if ('roundRect' in ctx) {
+  // roundRect is missing from older browsers and from test canvas mocks.
+  if (typeof ctx.roundRect === 'function') {
     ctx.beginPath();
-    (ctx as CanvasRenderingContext2D & { roundRect: Function }).roundRect(
-      x,
-      y,
-      width,
-      height,
-      radius
-    );
+    ctx.roundRect(x, y, width, height, radius);
     return;
   }
   ctx.beginPath();

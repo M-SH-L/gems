@@ -6,6 +6,7 @@ import { renderWithProviders } from '@/__tests__/helpers/renderWithProviders';
 import { Taskbar } from '@/shell/Taskbar';
 import { WindowManager } from '@/shell/WindowManager';
 import { useWindowStore } from '@/shell/windowStore';
+import { retroContent } from '@/games/fiction/content';
 
 function TestShell() {
   return (
@@ -31,14 +32,19 @@ describe('window lifecycle', () => {
       useWindowStore.getState().open('fiction', 'Interactive Fiction');
     });
 
-    expect(await screen.findByText('Coming soon...')).toBeInTheDocument();
+    expect(await screen.findByText(retroContent.title)).toBeVisible();
+
+    // Make progress so we can check it survives a minimize/restore round-trip.
+    await user.click(screen.getByRole('button', { name: /inspect the cracked gate/i }));
+    expect(screen.getByText(/behind a loose brick/i)).toBeVisible();
 
     await user.click(screen.getByTitle('Minimize'));
-    expect(screen.queryByText('Coming soon...')).not.toBeInTheDocument();
+    expect(screen.getByText(retroContent.title)).not.toBeVisible();
 
     const taskButton = screen.getByRole('button', { name: 'Interactive Fiction' });
     await user.click(taskButton);
-    expect(await screen.findByText('Coming soon...')).toBeInTheDocument();
+    expect(screen.getByText(retroContent.title)).toBeVisible();
+    expect(screen.getByText(/behind a loose brick/i)).toBeVisible();
 
     await user.click(screen.getByTitle('Maximize'));
     expect(useWindowStore.getState().windows[0].maximized).toBe(true);

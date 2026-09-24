@@ -81,4 +81,29 @@ describe('BuilderGame', () => {
       expect(cell).toHaveTextContent('');
     });
   });
+
+  it('tracks the best score separately per theme', async () => {
+    localStorage.setItem('builder-best-retro', '0');
+    localStorage.setItem('builder-best-futuristic', '77');
+    renderWithProviders(
+      <>
+        <ThemeGrabber />
+        <BuilderGame />
+      </>
+    );
+
+    const bestScore = () => screen.getByText('Best Score').nextElementSibling;
+
+    const firstItem = builderContentByTheme.retro.items[0];
+    await userEvent.click(screen.getByText(firstItem.name));
+    await userEvent.click(screen.getByTestId('builder-cell-0-0'));
+    expect(bestScore()).toHaveTextContent(String(firstItem.cost));
+
+    act(() => {
+      setThemeRef?.('futuristic');
+    });
+    await waitFor(() => expect(bestScore()).toHaveTextContent('77'));
+    expect(localStorage.getItem('builder-best-retro')).toBe(String(firstItem.cost));
+    expect(localStorage.getItem('builder-best-futuristic')).toBe('77');
+  });
 });

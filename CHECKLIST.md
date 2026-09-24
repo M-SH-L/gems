@@ -37,11 +37,11 @@
 - [x] Window integration tests passing
 
 ## Phase 5: Sound System
-- [ ] Sound files created/sourced (3 themes × 9 actions)
-- [ ] SoundContext.tsx + soundMap.ts
-- [ ] useSound.ts hook
-- [ ] Volume control in MenuBar
-- [ ] Sound wired to window events
+- [x] Sound files created/sourced (3 themes × 9 actions)
+- [x] SoundContext.tsx + soundMap.ts
+- [x] useSound.ts hook
+- [x] Volume control in MenuBar (mute toggle)
+- [x] Sound wired to window events
 
 ## Phase 6: Game 1 — Interactive Fiction
 - [x] Content types defined
@@ -121,20 +121,20 @@
 - [ ] Responsive clamping (min 1024x768)
 
 ## Phase 12: Full Test Suite
-- [ ] All unit tests passing
-- [ ] All component tests passing
-- [ ] All integration tests passing
-- [ ] All scenario tests passing + log reviewed
+- [x] All unit tests passing
+- [x] All component tests passing
+- [x] All integration tests passing
+- [x] All scenario tests passing + log reviewed
 - [ ] E2E tests passing
 - [ ] Coverage >80% on core logic
-- [ ] scenarios.log.json committed as baseline
+- [x] scenarios.log.json committed as baseline
 
 ## Phase 13: Final Review
 - [ ] All 15 theme × game combinations manually verified
 - [ ] Theme mid-game switch works for all games
 - [ ] Sound plays correctly across all themes
 - [ ] No console errors in any state
-- [ ] Build succeeds (npm run build)
+- [x] Build succeeds (npm run build)
 - [ ] Production build tested locally
 
 ## Phase 14: Gems V2 (3D)

@@ -31,11 +31,13 @@ export function useDrag({
       const handleUp = () => {
         document.removeEventListener('pointermove', handleMove);
         document.removeEventListener('pointerup', handleUp);
+        document.removeEventListener('pointercancel', handleUp);
         onDragEnd?.();
       };
 
       document.addEventListener('pointermove', handleMove);
       document.addEventListener('pointerup', handleUp);
+      document.addEventListener('pointercancel', handleUp);
     },
     [enabled, onDragStart, onDrag, onDragEnd]
   );

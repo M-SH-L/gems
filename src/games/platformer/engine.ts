@@ -392,7 +392,7 @@ function tileAt(level: LevelState, tx: number, ty: number) {
   return level.tiles[ty][tx];
 }
 
-function isSolidTile(tile: TileCode) {
+function isSolidTile(tile: number) {
   return tile === TileCode.Ground || tile === TileCode.Platform;
 }
 

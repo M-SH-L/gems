@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useReducer, useState } from 'react';
 import { useTheme } from '@/theme/useTheme';
+import { useSound } from '@/sound/useSound';
+import { THEME_RESET_MESSAGE, useThemeReset } from '@/hooks/useThemeReset';
 import { builderContentByTheme } from './content';
 import { Grid } from './Grid';
 import { Palette } from './Palette';
@@ -15,8 +17,26 @@ import { calculateScore } from './scoring';
 
 const BEST_SCORE_PREFIX = 'builder-best';
 
+function readBestScore(themeId: string): number {
+  try {
+    const stored = Number(localStorage.getItem(`${BEST_SCORE_PREFIX}-${themeId}`) ?? 0);
+    return Number.isFinite(stored) ? stored : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function writeBestScore(themeId: string, value: number) {
+  try {
+    localStorage.setItem(`${BEST_SCORE_PREFIX}-${themeId}`, String(value));
+  } catch {
+    // Ignore storage errors in restricted environments
+  }
+}
+
 export default function BuilderGame() {
   const { theme } = useTheme();
+  const { play } = useSound();
   const content = builderContentByTheme[theme.id] ?? builderContentByTheme.retro;
   const itemsById = useMemo(() => mapItemsById(content.items), [content.items]);
 
@@ -26,43 +46,48 @@ export default function BuilderGame() {
     (defaultItemId) => createInitialState(defaultItemId)
   );
 
-  const score = useMemo(
-    () => calculateScore(state.grid, itemsById, content.adjacencyRules),
-    [state.grid, itemsById, content.adjacencyRules]
-  );
-
-  const [bestScore, setBestScore] = useState(0);
-
-  useEffect(() => {
+  const showNotice = useThemeReset(() =>
     dispatch({
       type: 'reset',
       size: GRID_SIZE,
       budget: STARTING_BUDGET,
       defaultItemId: content.items[0]?.id ?? null,
-    });
-  }, [theme.id, content.items]);
+    })
+  );
+
+  const score = useMemo(
+    () => calculateScore(state.grid, itemsById, content.adjacencyRules),
+    [state.grid, itemsById, content.adjacencyRules]
+  );
+
+  const [best, setBest] = useState(() => ({
+    themeId: theme.id,
+    value: readBestScore(theme.id),
+  }));
+  if (best.themeId !== theme.id) {
+    setBest({ themeId: theme.id, value: readBestScore(theme.id) });
+  } else if (score.total > best.value) {
+    setBest({ themeId: theme.id, value: score.total });
+  }
 
   useEffect(() => {
-    const key = `${BEST_SCORE_PREFIX}-${theme.id}`;
-    try {
-      const stored = Number(localStorage.getItem(key) ?? 0);
-      setBestScore(Number.isFinite(stored) ? stored : 0);
-    } catch {
-      setBestScore(0);
-    }
-  }, [theme.id]);
+    writeBestScore(best.themeId, best.value);
+  }, [best]);
 
-  useEffect(() => {
-    const key = `${BEST_SCORE_PREFIX}-${theme.id}`;
-    if (score.total > bestScore) {
-      setBestScore(score.total);
-      try {
-        localStorage.setItem(key, String(score.total));
-      } catch {
-        // Ignore storage errors in restricted environments
-      }
+  const handlePlace = (row: number, col: number, itemId: string) => {
+    const current = state.grid[row]?.[col];
+    const item = itemsById[itemId];
+    const refund = current ? (itemsById[current]?.cost ?? 0) : 0;
+    if (item && current !== itemId && state.budget + refund - item.cost >= 0) {
+      play('place');
     }
-  }, [score.total, bestScore, theme.id]);
+    dispatch({ type: 'place', row, col, itemId, itemsById });
+  };
+
+  const handleRemove = (row: number, col: number) => {
+    if (state.grid[row]?.[col]) play('click');
+    dispatch({ type: 'remove', row, col, itemsById });
+  };
 
   return (
     <div
@@ -99,11 +124,17 @@ export default function BuilderGame() {
           </p>
         </div>
 
+        {showNotice && (
+          <div role="status" style={{ fontSize: 11, color: 'var(--color-primary)' }}>
+            {THEME_RESET_MESSAGE}
+          </div>
+        )}
+
         <ScorePanel
           scoreLabel={content.scoreLabel}
           budget={state.budget}
           score={score}
-          bestScore={bestScore}
+          bestScore={best.value}
           itemsById={itemsById}
         />
 
@@ -122,23 +153,8 @@ export default function BuilderGame() {
             selectedItemId={state.selectedItemId}
             mode={state.mode}
             background={content.gridBackground}
-            onPlace={(row, col, itemId) =>
-              dispatch({
-                type: 'place',
-                row,
-                col,
-                itemId,
-                itemsById,
-              })
-            }
-            onRemove={(row, col) =>
-              dispatch({
-                type: 'remove',
-                row,
-                col,
-                itemsById,
-              })
-            }
+            onPlace={handlePlace}
+            onRemove={handleRemove}
           />
         </div>
       </div>

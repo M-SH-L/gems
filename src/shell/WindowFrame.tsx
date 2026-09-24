@@ -1,12 +1,17 @@
 import { Suspense, useRef } from 'react';
 import { useWindowStore, type WindowState } from './windowStore';
 import { useDrag } from './useDrag';
+import { WindowVisibilityContext } from './windowVisibility';
 import { games } from './registry';
 import { useSound } from '../sound/useSound';
 
 export function WindowFrame({ win }: { win: WindowState }) {
-  const { close, minimize, maximize, focus, updatePosition, updateSize } =
-    useWindowStore();
+  const close = useWindowStore((s) => s.close);
+  const minimize = useWindowStore((s) => s.minimize);
+  const maximize = useWindowStore((s) => s.maximize);
+  const focus = useWindowStore((s) => s.focus);
+  const updatePosition = useWindowStore((s) => s.updatePosition);
+  const updateSize = useWindowStore((s) => s.updateSize);
   const { play } = useSound();
   const posRef = useRef({ x: win.x, y: win.y });
   const sizeRef = useRef({ w: win.width, h: win.height });
@@ -60,13 +65,14 @@ export function WindowFrame({ win }: { win: WindowState }) {
         zIndex: win.zIndex,
       };
 
-  if (win.minimized) return null;
-
+  // Minimized windows stay mounted (just hidden) so game progress survives
+  // a minimize/restore round-trip.
   return (
     <div
+      aria-hidden={win.minimized || undefined}
       style={{
         ...style,
-        display: 'flex',
+        display: win.minimized ? 'none' : 'flex',
         flexDirection: 'column',
         background: 'var(--color-surface)',
         border: 'var(--border-theme)',
@@ -116,6 +122,7 @@ export function WindowFrame({ win }: { win: WindowState }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              play('click');
               maximize(win.id);
             }}
             style={btnStyle}
@@ -156,7 +163,9 @@ export function WindowFrame({ win }: { win: WindowState }) {
             </div>
           }
         >
-          <GameComponent />
+          <WindowVisibilityContext.Provider value={!win.minimized}>
+            <GameComponent />
+          </WindowVisibilityContext.Provider>
         </Suspense>
       </div>
 
