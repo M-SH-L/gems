@@ -1,6 +1,6 @@
 # Gems 🎮
 
-**A simulated desktop OS environment hosting 5 theme-switchable mini games.**
+**A simulated desktop OS environment hosting 5 theme-switchable mini games — plus a portal to Gems V2, a 3D world with 3 more.**
 
 By Mishaal • Personal playground for exploring game mechanics, UI systems, and React patterns.
 
@@ -17,6 +17,23 @@ Gems is an experimental web-based desktop environment where I'm exploring:
 - **Testing Strategies** – Comprehensive test suite including unit, component, integration, scenario, and E2E tests
 
 This is a playground, not a product. It's where I experiment with ideas, test technical approaches, and build things for the joy of building.
+
+---
+
+## Gems V2 — step through the portal 🌀
+
+The app still opens on the V1 desktop. Click the swirling **ENTER V2** orb in the
+bottom-right corner and the desktop gets pulled into a vortex that drops you into
+**Gems V2**: a three.js world with a 3D hub and three new games. **Back to V1**
+(or Esc in the hub) runs the portal in reverse. You can also link straight to `/#v2`.
+
+| Game | Genre | Controls |
+|------|-------|----------|
+| 💎 **Gem Rush** | Endless runner on a synthwave causeway | ← → lanes, Space jump (tap on touch) |
+| 🏗️ **Sky Stack** | Timing stacker into the clouds | Space / click to drop |
+| 🟢 **Tilt Maze** | Physics marble maze, 5 levels | Arrows / WASD / drag to tilt |
+
+V2 has no theme switching. Details and architecture: [`docs/v2.md`](docs/v2.md).
 
 ---
 
@@ -115,10 +132,13 @@ Three complete visual and content themes:
 **Utilities:**
 - clsx + tailwind-merge for class utilities (~6KB)
 
-**No external libraries for:**
+**No external libraries for (V1):**
 - Maps (plain SVG)
 - Game engines (custom canvas rendering)
 - Animations (CSS only)
+
+**V2:**
+- three.js for the 3D hub and games, lazy-loaded only when you enter the portal
 
 **Testing:**
 - Vitest for unit/component/integration tests
@@ -158,6 +178,8 @@ src/
 │   ├── builder/    # Building sim grid + 3 content sets
 │   ├── geography/  # Map-based guessing + 3 location sets
 │   └── platformer/ # Canvas platformer + 9 levels (3 per theme)
+├── portal/         # V1 ↔ V2 portal orb + vortex transition
+├── v2/             # Gems V2: three.js stage, 3D hub, runner / stacker / maze
 ├── hooks/          # Custom hooks (useDrag, useGameLoop)
 ├── utils/          # Utilities (cn, clamp)
 └── __tests__/      # Full test suite (unit, component, integration, scenarios, e2e)

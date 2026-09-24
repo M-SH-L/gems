@@ -136,3 +136,16 @@
 - [ ] No console errors in any state
 - [ ] Build succeeds (npm run build)
 - [ ] Production build tested locally
+
+## Phase 14: Gems V2 (3D)
+- [x] V1 desktop portal orb + WebGL vortex transition (both directions)
+- [x] `#v2` deep link, lazy-loaded V2 bundle, WebGL-unavailable fallback
+- [x] Shared three.js Stage + Input action map
+- [x] 3D hub: floating island carousel with pedestal gems
+- [x] Gem Rush: endless 3-lane runner
+- [x] Sky Stack: slab-stacking timing game
+- [x] Tilt Maze: tilt-board marble physics, 5 levels
+- [x] Touch controls for all three games
+- [x] localStorage best scores / times
+- [x] Logic unit tests (runner, stacker, maze incl. level solvability)
+- [x] Portal integration test

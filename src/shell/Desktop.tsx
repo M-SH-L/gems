@@ -3,6 +3,7 @@ import { DesktopGrid } from './DesktopGrid';
 import { WindowManager } from './WindowManager';
 import { Taskbar } from './Taskbar';
 import { useTheme } from '../theme/useTheme';
+import { PortalOrb } from '../portal/PortalOrb';
 
 export function Desktop() {
   const { theme } = useTheme();
@@ -86,6 +87,7 @@ export function Desktop() {
         <MenuBar />
         <div style={{ flex: 1, overflow: 'auto', position: 'relative' }}>
           <DesktopGrid />
+          <PortalOrb />
           <WindowManager />
         </div>
         <Taskbar />
