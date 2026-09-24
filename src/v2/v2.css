@@ -430,8 +430,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .v2-hub-card,
-  .v2-panel,
-  .v2-toast {
+  .v2-panel {
     animation: none;
+  }
+  /* The animation is what hides the toast, so keep a motion-free fade. */
+  .v2-toast {
+    animation: v2-fade-late 0.9s linear forwards;
   }
 }

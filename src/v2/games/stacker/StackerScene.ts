@@ -149,6 +149,8 @@ export class StackerScene implements StageScene {
     this.movingMesh = this.makeSlabMesh(this.state.moving, 1);
     this.tower.add(this.movingMesh);
     this.overTime = 0;
+    // Clears the PERFECT toast so it doesn't replay at the start of the next run.
+    this.perfectTick = 0;
     this.emitHud(true);
   };
 
