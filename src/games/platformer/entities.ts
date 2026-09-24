@@ -2,14 +2,16 @@ export type ThemeId = 'retro' | 'futuristic' | 'organic';
 
 export const TILE_SIZE = 32;
 
-export enum TileCode {
-  Air = 0,
-  Ground = 1,
-  Collectible = 2,
-  Hazard = 3,
-  Goal = 4,
-  Platform = 5,
-}
+export const TileCode = {
+  Air: 0,
+  Ground: 1,
+  Collectible: 2,
+  Hazard: 3,
+  Goal: 4,
+  Platform: 5,
+} as const;
+
+export type TileCode = (typeof TileCode)[keyof typeof TileCode];
 
 export interface Vec2 {
   x: number;

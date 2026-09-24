@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/__tests__/helpers/renderWithProviders';
 import { WindowFrame } from '@/shell/WindowFrame';
 import { useWindowStore, type WindowState } from '@/shell/windowStore';
+import { retroContent } from '@/games/fiction/content';
 
 const baseWin: WindowState = {
   id: 'win-test',
@@ -31,7 +32,7 @@ describe('WindowFrame', () => {
     expect(screen.getByTitle('Maximize')).toBeInTheDocument();
     expect(screen.getByTitle('Close')).toBeInTheDocument();
 
-    expect(await screen.findByText('Coming soon...')).toBeInTheDocument();
+    expect(await screen.findByText(retroContent.title)).toBeInTheDocument();
   });
 
   it('controls update window state', async () => {

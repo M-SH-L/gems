@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { useMemo, useState, type CSSProperties } from 'react';
 import { useTheme } from '@/theme/useTheme';
+import { useSound } from '@/sound/useSound';
+import { THEME_RESET_MESSAGE, useThemeReset } from '@/hooks/useThemeReset';
 import { MapCanvas } from './MapCanvas';
 import { LocationPin } from './LocationPin';
 import { InfoPopup } from './InfoPopup';
@@ -37,31 +39,17 @@ export default function GeographyGame() {
   const [phase, setPhase] = useState<Phase>('guessing');
   const [results, setResults] = useState<RoundResult[]>([]);
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
-  const [showResetNotice, setShowResetNotice] = useState(false);
-  const hasMountedRef = useRef(false);
+  const { play } = useSound();
 
-  const resetGame = useCallback(() => {
+  const resetGame = () => {
     setRoundLocations(pickLocations(content.locations, content.rounds));
     setRoundIndex(0);
     setPhase('guessing');
     setResults([]);
     setSelectedLocationId(null);
-  }, [content.locations, content.rounds]);
+  };
 
-  useEffect(() => {
-    resetGame();
-    let timer: number | undefined;
-    if (hasMountedRef.current) {
-      setShowResetNotice(true);
-      timer = window.setTimeout(() => setShowResetNotice(false), 1200);
-    } else {
-      hasMountedRef.current = true;
-    }
-
-    return () => {
-      if (timer) window.clearTimeout(timer);
-    };
-  }, [content.id, resetGame]);
+  const showResetNotice = useThemeReset(resetGame, 1200);
 
   const rounds = roundLocations.length;
   const currentLocation = roundLocations[roundIndex];
@@ -81,6 +69,7 @@ export default function GeographyGame() {
   const handleGuess = (point: Point) => {
     if (phase !== 'guessing' || !currentLocation) return;
     const scored = scoreGuess(point, currentLocation);
+    play(scored.band === 'miss' ? 'click' : 'collect');
     setResults((prev) => {
       const next = [...prev];
       next[roundIndex] = {
@@ -98,6 +87,7 @@ export default function GeographyGame() {
 
   const handleNext = () => {
     if (roundIndex + 1 >= rounds) {
+      play('win');
       setPhase('complete');
       return;
     }
@@ -182,7 +172,7 @@ export default function GeographyGame() {
                 fontSize: 12,
               }}
             >
-              Theme changed — restarting
+              {THEME_RESET_MESSAGE}
             </div>
           )}
         </div>

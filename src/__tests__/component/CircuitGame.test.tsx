@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { act, fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from '@/__tests__/helpers/renderWithProviders';
 import CircuitGame from '@/games/circuit/CircuitGame';
 
@@ -87,5 +87,31 @@ describe('CircuitGame', () => {
     ]);
 
     expect(await screen.findByRole('status')).toHaveTextContent('Level complete');
+  });
+
+  describe('timer', () => {
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('stops once the level is complete', () => {
+      vi.useFakeTimers();
+      renderWithProviders(<CircuitGame />);
+
+      act(() => {
+        vi.advanceTimersByTime(2000);
+      });
+      expect(screen.getByTestId('circuit-timer')).toHaveTextContent('00:02');
+
+      const grid = screen.getByTestId('circuit-grid') as SVGSVGElement;
+      mockRect(grid);
+      drawPath(grid, [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]]);
+      drawPath(grid, [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4]]);
+
+      act(() => {
+        vi.advanceTimersByTime(5000);
+      });
+      expect(screen.getByTestId('circuit-timer')).toHaveTextContent('00:02');
+    });
   });
 });

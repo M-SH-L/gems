@@ -1,13 +1,15 @@
+import type { CSSProperties } from 'react';
 import { MenuBar } from './MenuBar';
 import { DesktopGrid } from './DesktopGrid';
 import { WindowManager } from './WindowManager';
 import { Taskbar } from './Taskbar';
 import { useTheme } from '../theme/useTheme';
+import { PortalOrb } from '../portal/PortalOrb';
 
 export function Desktop() {
   const { theme } = useTheme();
 
-  const backgroundStyle =
+  const backgroundStyle: CSSProperties =
     theme.id === 'retro'
       ? {
           backgroundColor: 'var(--color-bg)',
@@ -26,7 +28,7 @@ export function Desktop() {
               'linear-gradient(120deg, rgba(255, 255, 255, 0.65), rgba(237, 228, 212, 0.85)), repeating-linear-gradient(45deg, rgba(212, 163, 115, 0.15) 0, rgba(212, 163, 115, 0.15) 2px, transparent 2px, transparent 10px)',
           };
 
-  const overlayStyle =
+  const overlayStyle: CSSProperties =
     theme.id === 'retro'
       ? {
           backgroundImage:
@@ -86,6 +88,7 @@ export function Desktop() {
         <MenuBar />
         <div style={{ flex: 1, overflow: 'auto', position: 'relative' }}>
           <DesktopGrid />
+          <PortalOrb />
           <WindowManager />
         </div>
         <Taskbar />

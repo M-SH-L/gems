@@ -30,7 +30,7 @@ const getContextMock = () => new MockCanvasContext2D();
 
 describe('PlatformerGame', () => {
   it('renders canvas and HUD', () => {
-    HTMLCanvasElement.prototype.getContext = () => getContextMock() as any;
+    HTMLCanvasElement.prototype.getContext = () => getContextMock() as unknown as CanvasRenderingContext2D;
     renderWithProviders(<PlatformerGame />);
 
     expect(screen.getByTestId('platformer-canvas')).toBeInTheDocument();

@@ -37,15 +37,11 @@ export function PuzzleGrid({
   const blocked = new Set((level.blockedCells ?? []).map((tuple) => `${tuple[0]},${tuple[1]}`));
 
   const pathEntries = Object.entries(paths);
-  const activePathEntries: Array<{ color: string; path: Cell[]; isActive?: boolean }> = [];
+  const pathsToRender: Array<{ color: string; path: Cell[]; isActive: boolean }> =
+    pathEntries.map(([color, path]) => ({ color, path, isActive: false }));
   if (activePath && activePath.length > 0 && activeColor) {
-    activePathEntries.push({ color: activeColor, path: activePath, isActive: true });
+    pathsToRender.push({ color: activeColor, path: activePath, isActive: true });
   }
-
-  const pathsToRender = [
-    ...pathEntries.map(([color, path]) => ({ color, path })),
-    ...activePathEntries,
-  ];
 
   return (
     <svg
@@ -183,12 +179,12 @@ export function PuzzleGrid({
         </text>
       )}
 
-      {pathsToRender.map(({ path }) =>
+      {pathsToRender.map(({ color, path, isActive }) =>
         path.map((cell) => {
           const key = cellKey(cell);
           return (
             <circle
-              key={`solder-${key}`}
+              key={`solder-${color}-${isActive ? 'active' : 'set'}-${key}`}
               cx={cell.c * CELL_SIZE + CELL_SIZE / 2}
               cy={cell.r * CELL_SIZE + CELL_SIZE / 2}
               r={2.2}

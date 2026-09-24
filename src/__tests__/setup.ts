@@ -40,12 +40,23 @@ Object.defineProperty(globalThis, 'Audio', {
   writable: true,
 });
 
-// Mock requestAnimationFrame
+// Mock requestAnimationFrame / cancelAnimationFrame so game loops stop on unmount
 let rafId = 0;
+const rafTimers = new Map<number, ReturnType<typeof setTimeout>>();
 globalThis.requestAnimationFrame = (cb: FrameRequestCallback) => {
   rafId++;
-  setTimeout(() => cb(performance.now()), 0);
-  return rafId;
+  const id = rafId;
+  rafTimers.set(
+    id,
+    setTimeout(() => {
+      rafTimers.delete(id);
+      cb(performance.now());
+    }, 16)
+  );
+  return id;
 };
 
-globalThis.cancelAnimationFrame = (_id: number) => {};
+globalThis.cancelAnimationFrame = (id: number) => {
+  clearTimeout(rafTimers.get(id));
+  rafTimers.delete(id);
+};

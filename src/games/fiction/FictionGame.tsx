@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useReducer, useRef, useState, type CSSProperties } from 'react';
+import { useReducer, type CSSProperties } from 'react';
 import { useTheme } from '@/theme/useTheme';
+import { useSound } from '@/sound/useSound';
+import { THEME_RESET_MESSAGE, useThemeReset } from '@/hooks/useThemeReset';
 import { fictionContentByTheme } from './content';
 import {
   createInitialState,
@@ -53,33 +55,25 @@ const noticeStyles: Record<string, CSSProperties> = {
 
 export default function FictionGame() {
   const { theme } = useTheme();
-  const content = useMemo(() => fictionContentByTheme[theme.id], [theme.id]);
+  const content = fictionContentByTheme[theme.id];
   const [state, dispatch] = useReducer(reducer, content, createInitialState);
-  const [notice, setNotice] = useState<string | null>(null);
-  const previousTheme = useRef(theme.id);
-
-  useEffect(() => {
-    if (previousTheme.current !== theme.id) {
-      dispatch({ type: 'reset', content });
-      setNotice('Theme changed — restarting');
-      previousTheme.current = theme.id;
-      const timer = window.setTimeout(() => setNotice(null), 2000);
-      return () => window.clearTimeout(timer);
-    }
-    return undefined;
-  }, [theme.id, content]);
+  const { play } = useSound();
+  const showNotice = useThemeReset(() => dispatch({ type: 'reset', content }));
 
   const scene =
     content.scenes.find((entry) => entry.id === state.currentScene) ??
     content.scenes.find((entry) => entry.id === content.startScene) ??
     content.scenes[0];
 
-  useEffect(() => {
-    const exists = content.scenes.some((entry) => entry.id === state.currentScene);
-    if (!exists) {
-      dispatch({ type: 'reset', content });
-    }
-  }, [content, state.currentScene]);
+  const handleChoose = (index: number) => {
+    const next = makeChoice(content, state, index);
+    if (next.status === 'win') play('win');
+    else if (next.status === 'lose') play('lose');
+    else if (next.inventory.size > state.inventory.size) play('collect');
+    else play('click');
+    dispatch({ type: 'choose', index, content });
+  };
+
   const inventoryItems = Array.from(state.inventory);
 
   return (
@@ -102,7 +96,7 @@ export default function FictionGame() {
           <span style={{ fontSize: 11, opacity: 0.7 }}>{content.intro}</span>
         </div>
 
-        {notice && (
+        {showNotice && (
           <div
             style={{
               padding: '6px 10px',
@@ -112,7 +106,7 @@ export default function FictionGame() {
               ...noticeStyles[theme.id],
             }}
           >
-            {notice}
+            {THEME_RESET_MESSAGE}
           </div>
         )}
 
@@ -143,12 +137,10 @@ export default function FictionGame() {
             const available = isChoiceAvailable(choice, state);
             return (
               <button
-                key={`${scene.id}-choice-${choice.label}`}
+                key={`${scene.id}-choice-${index}`}
                 type="button"
                 disabled={!available || state.status !== 'playing'}
-                onClick={() =>
-                  dispatch({ type: 'choose', index, content })
-                }
+                onClick={() => handleChoose(index)}
                 style={{
                   textAlign: 'left',
                   padding: '8px 12px',

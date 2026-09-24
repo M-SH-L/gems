@@ -1,29 +1,12 @@
 import {
-  createContext,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
   type ReactNode,
 } from 'react';
-
-interface SoundContextValue {
-  volume: number;
-  setVolume: (value: number) => void;
-  playUrl: (url: string) => void;
-  isReady: boolean;
-}
-
-const DEFAULT_VOLUME = 0.6;
-
-export const SoundContext = createContext<SoundContextValue>({
-  volume: DEFAULT_VOLUME,
-  setVolume: () => {},
-  playUrl: () => {},
-  isReady: false,
-});
+import { DEFAULT_VOLUME, SoundContext } from './soundContextValue';
 
 function clampVolume(value: number) {
   return Math.min(1, Math.max(0, value));
@@ -122,7 +105,8 @@ export function SoundProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const prime = () => {
-      void ensureContext();
+      // Audio is optional; ignore browsers without Web Audio support.
+      ensureContext().catch(() => {});
     };
     window.addEventListener('pointerdown', prime, { once: true });
     window.addEventListener('keydown', prime, { once: true });
@@ -140,8 +124,4 @@ export function SoundProvider({ children }: { children: ReactNode }) {
   return (
     <SoundContext.Provider value={value}>{children}</SoundContext.Provider>
   );
-}
-
-export function useSoundContext() {
-  return useContext(SoundContext);
 }

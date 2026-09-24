@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { useTheme } from '@/theme/useTheme';
+import { useSound } from '@/sound/useSound';
+import { THEME_RESET_MESSAGE, useThemeReset } from '@/hooks/useThemeReset';
+import { useWindowVisible } from '@/shell/windowVisibility';
 import { circuitContent } from './content';
 import { PathDrawer } from './PathDrawer';
 import { isLevelComplete } from './validation';
@@ -15,6 +18,8 @@ function formatTime(totalSeconds: number): string {
 
 export default function CircuitGame() {
   const { theme } = useTheme();
+  const { play } = useSound();
+  const visible = useWindowVisible();
   const content = circuitContent[theme.id];
   const levels = content.levels;
 
@@ -24,11 +29,16 @@ export default function CircuitGame() {
   const [status, setStatus] = useState<string | null>(null);
 
   const statusTimeoutRef = useRef<number | null>(null);
-  const startTimeRef = useRef(Date.now());
-  const hasMountedRef = useRef(false);
 
   const level = levels[levelIndex];
   const complete = useMemo(() => isLevelComplete(level, paths), [level, paths]);
+
+  const showThemeNotice = useThemeReset(() => {
+    setLevelIndex(0);
+    setPaths({});
+    setElapsed(0);
+    setStatus(null);
+  });
 
   const clearStatus = () => {
     if (statusTimeoutRef.current) {
@@ -46,42 +56,32 @@ export default function CircuitGame() {
 
   const resetLevel = () => {
     setPaths({});
-    startTimeRef.current = Date.now();
     setElapsed(0);
   };
 
-  const resetGame = (message?: string) => {
-    setLevelIndex(0);
-    resetLevel();
-    if (message) pushStatus(message);
-  };
-
+  // The timer only runs while the level is unsolved and its window is showing.
   useEffect(() => {
-    if (!hasMountedRef.current) {
-      hasMountedRef.current = true;
-      return;
-    }
-    resetGame('Theme changed — restarting');
-  }, [theme.id]);
-
-  useEffect(() => {
-    if (complete) {
-      pushStatus(levelIndex === levels.length - 1 ? 'All circuits restored!' : 'Level complete');
-    }
-  }, [complete, levelIndex, levels.length]);
-
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      const delta = Math.floor((Date.now() - startTimeRef.current) / 1000);
-      setElapsed(delta);
-    }, 1000);
+    if (complete || !visible) return undefined;
+    const interval = window.setInterval(() => setElapsed((prev) => prev + 1), 1000);
     return () => window.clearInterval(interval);
-  }, [levelIndex, theme.id]);
+  }, [complete, visible, levelIndex, theme.id]);
+
+  const handlePathsChange = (nextPaths: PathMap) => {
+    const added = Object.keys(nextPaths).length > Object.keys(paths).length;
+    setPaths(nextPaths);
+    if (!complete && isLevelComplete(level, nextPaths)) {
+      play('win');
+      pushStatus(levelIndex === levels.length - 1 ? 'All circuits restored!' : 'Level complete');
+    } else if (added) {
+      play('connect');
+    }
+  };
 
   const handleNext = () => {
     if (levelIndex < levels.length - 1) {
       setLevelIndex((prev) => prev + 1);
       resetLevel();
+      clearStatus();
     }
   };
 
@@ -89,6 +89,8 @@ export default function CircuitGame() {
     resetLevel();
     clearStatus();
   };
+
+  const statusMessage = showThemeNotice ? THEME_RESET_MESSAGE : status;
 
   return (
     <div
@@ -136,7 +138,7 @@ export default function CircuitGame() {
         </div>
       </div>
 
-      {status && (
+      {statusMessage && (
         <div
           role="status"
           style={{
@@ -148,7 +150,7 @@ export default function CircuitGame() {
             alignSelf: 'flex-start',
           }}
         >
-          {status}
+          {statusMessage}
         </div>
       )}
 
@@ -177,7 +179,7 @@ export default function CircuitGame() {
           <PathDrawer
             level={level}
             paths={paths}
-            onPathsChange={setPaths}
+            onPathsChange={handlePathsChange}
             colors={content.colors}
             style={content.style}
           />
